@@ -16,10 +16,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ScraperApplicationTest {
+public class MainTest {
 
     @InjectMocks
-    private ScraperApplication uut;
+    private Main uut;
 
     @Mock
     private OutputRecordCalculator outputRecordCalculator;

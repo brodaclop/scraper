@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.rules.SpringClassRule;
 import org.springframework.test.context.junit4.rules.SpringMethodRule;
 import pls.scraper.beans.ShopItem;
@@ -18,6 +19,7 @@ import pls.scraper.beans.ShopItem;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
+@ActiveProfiles("commandLineDisabled")
 @SpringBootTest
 //TODO: make test more robust by de-serialising JSON output back instead of string comparison
 public class ShopItemOutputTest {
