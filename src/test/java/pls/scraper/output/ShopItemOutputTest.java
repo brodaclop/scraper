@@ -37,7 +37,8 @@ public class ShopItemOutputTest {
     public static Collection<Object[]> data() {
         return ImmutableList.copyOf(new Object[][]{
                 {new ShopItem("test", 5, 12, "test description"), "{\"title\":\"test\",\"description\":\"test description\",\"kcal_per_100g\":5,\"unit_price\":0.12}"},
-                {new ShopItem("test", 5, 100, "test description"), "{\"title\":\"test\",\"description\":\"test description\",\"kcal_per_100g\":5,\"unit_price\":1.0}"}
+                {new ShopItem("test", 5, 100, "test description"), "{\"title\":\"test\",\"description\":\"test description\",\"kcal_per_100g\":5,\"unit_price\":1.0}"},
+                {new ShopItem("test", null, 100, "test description"), "{\"title\":\"test\",\"description\":\"test description\",\"unit_price\":1.0}"}
         });
     }
 

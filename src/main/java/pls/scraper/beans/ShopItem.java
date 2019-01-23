@@ -4,14 +4,14 @@ import com.google.common.base.Preconditions;
 
 public final class ShopItem {
     private final String title;
-    private final int calories;
+    private final Integer calories;
     private final int priceInPence;
     private final String description;
 
-    public ShopItem(String title, int calories, int priceInPence, String description) {
+    public ShopItem(String title, Integer calories, int priceInPence, String description) {
         Preconditions.checkNotNull(title, "title mustn't be null");
         Preconditions.checkNotNull(description, "description mustn't be null");
-        Preconditions.checkArgument(calories >= 0, "calories can't be negative");
+        Preconditions.checkArgument(calories == null || calories >= 0, "calories can't be negative");
         Preconditions.checkArgument(priceInPence >= 0, "price can't be negative");
         this.title = title;
         this.calories = calories;
@@ -23,7 +23,7 @@ public final class ShopItem {
         return title;
     }
 
-    public int getCalories() {
+    public Integer getCalories() {
         return calories;
     }
 

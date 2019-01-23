@@ -9,6 +9,12 @@ public class ShopItemTest {
         ShopItem uut = new ShopItem("test title", 5, 42, "test description");
     }
 
+    @Test
+    public void constructWithNullCalories_shouldSucceed() {
+        ShopItem uut = new ShopItem("test title", null, 42, "test description");
+    }
+
+
     @Test(expected = NullPointerException.class)
     public void constructWithNullTitle_shouldThrowNPE() {
         ShopItem uut = new ShopItem(null, 5, 42, "test description");
