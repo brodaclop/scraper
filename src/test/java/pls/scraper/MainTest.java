@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import pls.scraper.business.OutputRecordCalculator;
+import pls.scraper.input.ShopItemLister;
 import pls.scraper.output.OutputRecord;
 import pls.scraper.output.RecordOutputter;
 
@@ -26,6 +27,9 @@ public class MainTest {
 
     @Mock
     private RecordOutputter recordOutputter;
+
+    @Mock
+    private ShopItemLister shopItemLister;
 
     @Test
     public void run_shouldPassRecordToSystemOut() throws IOException {
