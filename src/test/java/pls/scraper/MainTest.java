@@ -12,6 +12,7 @@ import pls.scraper.output.OutputRecord;
 import pls.scraper.output.RecordOutputter;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -30,6 +31,9 @@ public class MainTest {
 
     @Mock
     private ShopItemLister shopItemLister;
+
+    @Mock
+    private Logger log;
 
     @Test
     public void run_shouldPassRecordToSystemOut() throws IOException {

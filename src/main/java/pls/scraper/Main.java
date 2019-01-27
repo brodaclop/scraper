@@ -14,6 +14,8 @@ import pls.scraper.output.RecordOutputter;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Component
@@ -29,6 +31,9 @@ public class Main implements CommandLineRunner {
     @Autowired
     private ShopItemRetriever shopItemRetriever;
 
+    @Autowired
+    private Logger log;
+
     private ShopItem retrieve(String url) {
         try {
             return shopItemRetriever.retrieve(url);
@@ -37,20 +42,32 @@ public class Main implements CommandLineRunner {
         }
     }
 
+    private List<ShopItem> fetchItems() throws ScraperException {
+        try {
+            return shopItemLister.listItems().stream().map(this::retrieve).collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new ScraperException("Failed to retrieve data from website", e);
+        }
+    }
+
+    private void output(OutputRecord outputRecord) throws ScraperException {
+        try {
+            recordOutputter.output(outputRecord, System.out); // System.out could also be injected, but we're writing a simple tool here
+        } catch (IOException e) {
+            throw new ScraperException("Failed to write output", e);
+        }
+    }
+
     @Override
     public void run(String... args) {
 
         try {
-            List<ShopItem> items = shopItemLister.listItems().stream().map(this::retrieve).collect(Collectors.toList());
+            List<ShopItem> items = fetchItems();
             OutputRecord outputRecord = outputRecordCalculator.create(items);
-            try {
-                recordOutputter.output(outputRecord, System.out); // System.out could also be injected, but we're writing a simple tool here
-            } catch (IOException ex) {
-                //TODO: log exception on debug level
-                System.err.println("Failed to write output.");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            output(outputRecord);
+        } catch (ScraperException ex) {
+            System.err.println(ex.getMessage());
+            log.log(Level.FINE, "Scraping failed", ex);
         }
 
 

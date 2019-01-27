@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+/**
+ * Jackson annotations for serialising {@link pls.scraper.beans.ShopItem} objects, used by {@link JacksonConfiguration}
+ */
 public interface ShopItemMixin {
 
     String getTitle();

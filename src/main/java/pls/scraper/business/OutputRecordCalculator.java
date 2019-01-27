@@ -8,6 +8,9 @@ import pls.scraper.output.OutputRecord;
 
 import java.util.List;
 
+/**
+ * Calculates total gross and vat paid for a list of items
+ */
 @Component
 public class OutputRecordCalculator {
 

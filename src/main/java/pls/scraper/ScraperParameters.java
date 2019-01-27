@@ -3,6 +3,9 @@ package pls.scraper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+/**
+ * Container for external parameters coming from the command line
+ */
 @Component
 public class ScraperParameters {
 
